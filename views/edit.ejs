@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html lang="en" dir="ltr"> 
+  
+<head> 
+    <meta charset="utf-8"> 
+    <title>todo</title> 
+    <link rel="stylesheet" scr="/index.css"> 
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
+</head> 
+  
+<body> 
+    <div class="container"> 
+        <h1 class="row"> 
+                
+          TODO APP  
+               
+        </h1> 
+        <br/><br/> 
+        <div class="row"> 
+            <form action="/" class="form-inline col-sm-offset-3" method="POST"> 
+                <div class="input-group"> 
+                    <span class="input-group-addon"> 
+                      <i class="glyphicon glyphicon-pencil"></i> 
+                    </span> 
+                    <input type="text" class="form-control"
+                           placeholder="todo-item" 
+                           id="box" style="width: 30vw" name="content"/> 
+                </div> 
+                <div class="form-group"> 
+                    <button type="submit"><span class="fas fa-plus btn btn-primary form-control" style="width: 60px">Add</span></button> 
+                </div> 
+            </form> 
+        </div> 
+        <div class="row">
+            <% tasks.forEach(task => { %>
+            <ul class="list-group" id="list_item">
+                <!--display edit and cancel button only for the task selected to be edited-->
+                <% if(task._id == taskId) {%>
+                    <form action="/edit/<%= task._id %>" method="POST">
+                        <input type="text" value="<%= task.content%>" name="content">
+                     <button type="submit">Edit</button>
+                        <a href="/">CANCEL</a></li>
+                    </form>
+                <%} else {%>
+                    <!--for all other tasks only view-->
+                    <li class="list-group-item todo-list-item"><input disabled type="text" value="<%= task.content%>" name="content"></li>
+                <% } %>
+            </ul> 
+            <% }) %>
+        </div> 
+    </div> 
+</body> 
+  
+</html>
