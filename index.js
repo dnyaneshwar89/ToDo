@@ -45,8 +45,15 @@ app.post('/',(req,res) => {
         content:req.body.content,
     });
     try{
-        newTask.save();
-        res.redirect('/');
+        newTask.save((err) => {
+            if(err){
+                console.log(err)
+            }
+            else{
+                res.redirect('/');
+            }
+        });
+        
     }
     catch{
         res.redirect('/');
